@@ -1,6 +1,7 @@
 // import banner1 from "../../../assets/banner/banner1.jpg";
 
 export default function Banner() {
+  // console.log(object);
   return (
     <div className="text-white container mx-auto h-screen flex justify-center flex-col">
       <h1 className="text-4xl font-bold">Banner detail here</h1>
