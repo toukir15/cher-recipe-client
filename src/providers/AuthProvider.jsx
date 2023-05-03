@@ -1,9 +1,11 @@
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 // import App from "../App";
 import app from "../firebase/firebase.config";
 
@@ -12,6 +14,36 @@ export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  console.log(user);
+
+  //user login or not check
+  const [loginUser, setLoginUser] = useState(null);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setLoginUser(null);
+      if (user) {
+        setLoginUser(user);
+      } else {
+        setLoginUser(null);
+        console.log("user not login");
+        // logout function hear
+        //...function
+      }
+    });
+  }, []);
+
+  //sing out
+  const userSingOut = () => {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        console.log("sing out");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log("singOut error", error);
+      });
+  };
 
   // resister
   const resister = (email, password) => {
@@ -28,6 +60,8 @@ export default function AuthProvider({ children }) {
     resister,
     signIn,
     setUser,
+    loginUser,
+    userSingOut,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

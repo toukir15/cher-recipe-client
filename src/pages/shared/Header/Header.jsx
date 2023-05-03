@@ -9,7 +9,9 @@ export default function Header() {
       <div className="flex-none">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            <Link to="/">
+              <a>Home</a>
+            </Link>
           </li>
           <li>
             <a>Blog</a>

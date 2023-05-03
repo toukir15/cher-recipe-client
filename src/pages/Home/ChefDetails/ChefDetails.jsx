@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function ChefDetails({ singleChef }) {
   const {
     chef_details,
@@ -7,7 +9,6 @@ export default function ChefDetails({ singleChef }) {
     experience,
     number_of_recipe,
   } = singleChef;
-  console.log(chef_id);
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl mt-8">
       <figure className=" bg-cover">
@@ -28,9 +29,9 @@ export default function ChefDetails({ singleChef }) {
             </p>
           </div>
           <div className="card-actions ">
-            <button to={`/recipe/${chef_id}`} className="btn btn-primary">
-              Recipe
-            </button>
+            <Link to={`/recipe/${chef_id}`}>
+              <button className="btn btn-primary"> Recipe</button>
+            </Link>
           </div>
         </div>
       </div>

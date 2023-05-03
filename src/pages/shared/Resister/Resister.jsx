@@ -1,11 +1,16 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import Header from "../Header/Header";
+import { GoogleAuthProvider, updateProfile } from "firebase/auth";
 
 export default function Resister() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const { resister } = useContext(AuthContext);
+  const { resister, loginUser, userSingOut } = useContext(AuthContext);
+
+  console.log(loginUser);
+
   const handleResister = (event) => {
     // prevent reload
     event.preventDefault();
@@ -13,84 +18,109 @@ export default function Resister() {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+    const photoUrl = form.image.value;
 
     setSuccess("");
     setError("");
+
+    //update user profile function
+    const updateUserProfile = (resisterUser, displayName, photoURL) => {
+      updateProfile(resisterUser.user, {
+        photoURL,
+        displayName,
+      })
+        .then((res) => {
+          form.reset();
+          setSuccess("User resister Successfully");
+        })
+        .catch((err) => {
+          userSingOut();
+        });
+    };
+
     // function get email and password
     resister(email, password)
       .then((result) => {
-        const loggedUser = result.user;
-        console.log(loggedUser);
-        form.reset();
-        setSuccess("User Created Successfully");
+        updateUserProfile(result, name, photoUrl);
       })
       .catch((error) => {
         console.log(error.message);
         setError(error.message);
       });
   };
-  return (
-    <div className="hero min-h-screen bg-base-200">
-      <div className="hero-content flex-col ">
-        <div className="text-center">
-          <h1 className="text-5xl font-bold">Please Resister!</h1>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form onSubmit={handleResister} className="card-body">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Name"
-                className="input input-bordered"
-                name="name"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                placeholder="email"
-                className="input input-bordered"
-                name="email"
-                required
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="password"
-                className="input input-bordered"
-                name="password"
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Photo url</span>
-              </label>
-              <input type="image" id="image" alt="Login"></input>
 
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Already have an account? <Link to="/login">Please Login</Link>
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
-            </div>
-            {success ? <p className="text-green-600">{success}</p> : ""}
-            {error ? <p className="text-red-600">{error}</p> : ""}
-          </form>
+  return (
+    <div>
+      <div className="text-black bg-black">
+        <Header />
+      </div>
+      <div className="hero min-h-screen bg-base-200">
+        <div className="hero-content flex-col ">
+          <div className="text-center">
+            <h1 className="text-5xl font-bold">Please Resister!</h1>
+          </div>
+          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <form onSubmit={handleResister} className="card-body">
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  className="input input-bordered"
+                  name="name"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  className="input input-bordered"
+                  name="email"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="password"
+                  className="input input-bordered"
+                  name="password"
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo url</span>
+                </label>
+                <input
+                  className="border rounded border-gray-300"
+                  type="url"
+                  id="image"
+                  name="image"
+                ></input>
+
+                <label onClick={() => userSingOut()} className="label">
+                  <a href="#" className="label-text-alt link link-hover">
+                    Already have an account?
+                    <Link to="/login">Please Login</Link>
+                  </a>
+                </label>
+              </div>
+              <div className="form-control mt-6">
+                <button className="btn btn-primary">Login</button>
+              </div>
+              {success ? <p className="text-green-600">{success}</p> : ""}
+              {error ? <p className="text-red-600">{error}</p> : ""}
+            </form>
+          </div>
         </div>
       </div>
     </div>
