@@ -12,6 +12,8 @@ export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
 
   // resister
   const resister = (email, password) => {
@@ -19,14 +21,19 @@ export default function AuthProvider({ children }) {
   };
 
   // login
-  const login = (email, password) => {
+  const signIn = (email, password) => {
+    // setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   const authInfo = {
     resister,
-    login,
+    signIn,
     setUser,
+    setSuccess,
+    setError,
+    success,
+    error,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

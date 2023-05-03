@@ -1,8 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 export default function Resister() {
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const { resister } = useContext(AuthContext);
   const handleResister = (event) => {
     // prevent reload
@@ -10,16 +12,22 @@ export default function Resister() {
     const form = event.target;
     const name = form.name.value;
     const email = form.email.value;
-    const password = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
 
+    setSuccess("");
+    setError("");
     // function get email and password
     resister(email, password)
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
+        form.reset();
+        setSuccess("User Created Successfully");
       })
       .catch((error) => {
         console.log(error.message);
+        setError(error.message);
       });
   };
   return (
@@ -73,6 +81,8 @@ export default function Resister() {
             <div className="form-control mt-6">
               <button className="btn btn-primary">Login</button>
             </div>
+            {success ? <p className="text-green-600">{success}</p> : ""}
+            {error ? <p className="text-red-600">{error}</p> : ""}
           </form>
         </div>
       </div>

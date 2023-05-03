@@ -3,6 +3,8 @@ import Main from "../layout/Main";
 import LogIn from "../pages/shared/LogIn/LogIn";
 import Home from "../pages/Home/Home/Home";
 import Resister from "../pages/shared/Resister/Resister";
+import RecipeLayout from "../layout/RecipeLayout";
+import Recipe from "../pages/Recipe/Recipe";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +21,16 @@ const router = createBrowserRouter([
       {
         path: "resister",
         element: <Resister />,
+      },
+      {
+        path: "recipeLayout",
+        element: <RecipeLayout />,
+      },
+      {
+        path: "recipe/:id",
+        element: <Recipe />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/recipe/${params.id}`),
       },
     ],
   },

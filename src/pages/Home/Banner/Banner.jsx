@@ -1,5 +1,7 @@
 // import banner1 from "../../../assets/banner/banner1.jpg";
 
+import { Link } from "react-router-dom";
+
 export default function Banner() {
   // console.log(object);
   return (
@@ -19,7 +21,9 @@ export default function Banner() {
         Cupiditate, perferendis itaque quia id vel nostrum?
       </p>
       <div>
-        <button className="btn btn-primary">View Recipe</button>
+        <Link to="/recipeLayout">
+          <button className="btn btn-primary">View Recipe</button>
+        </Link>
       </div>
     </div>
   );

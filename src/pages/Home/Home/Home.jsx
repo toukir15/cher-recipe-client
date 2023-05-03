@@ -14,7 +14,6 @@ export default function Home() {
           height: "100vh",
         }}
       >
-        {/* overlay */}
         <div className="w-full h-full bg-black absolute top-0 left-0 opacity-50 "></div>
         <div className="z-10 relative">
           <Header />
