@@ -72,6 +72,13 @@ export default function Resister() {
                 className="input input-bordered"
                 name="password"
               />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Photo url</span>
+              </label>
+              <input type="image" id="image" alt="Login"></input>
+
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Already have an account? <Link to="/login">Please Login</Link>

@@ -13,7 +13,7 @@ export default function Chef() {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center my-20">Chef</h2>
+      <h2 className="text-4xl font-bold text-center my-20">Our Chef</h2>
       <div className="container mx-auto grid md:grid-cols-3 mt-20">
         {chef.map((singleChef) => (
           <ChefDetails
