@@ -5,10 +5,12 @@ import Home from "../pages/Home/Home/Home";
 import Resister from "../pages/shared/Resister/Resister";
 import RecipeLayout from "../layout/RecipeLayout";
 import Recipe from "../pages/Recipe/Recipe";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
