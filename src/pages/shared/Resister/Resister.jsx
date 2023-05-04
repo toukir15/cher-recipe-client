@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Header from "../Header/Header";
-import { GoogleAuthProvider, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 
 export default function Resister() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const { resister, loginUser, userSingOut } = useContext(AuthContext);
+  const { resister, loginUser } = useContext(AuthContext);
 
   console.log(loginUser);
 
@@ -107,7 +107,7 @@ export default function Resister() {
                   name="image"
                 ></input>
 
-                <label onClick={() => userSingOut()} className="label">
+                <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Already have an account?
                     <Link to="/login">Please Login</Link>
