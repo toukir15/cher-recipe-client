@@ -105,14 +105,16 @@ export default function Resister() {
                 ></input>
 
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
+                  <p className="label-text-alt">
                     Already have an account?
-                    <Link to="/login">Please Login</Link>
-                  </a>
+                    <Link className="text-blue-500 link link-hover" to="/login">
+                      Please Login
+                    </Link>
+                  </p>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-primary">Sing Up</button>
               </div>
               {success ? <p className="text-green-600">{success}</p> : ""}
               {error ? <p className="text-red-600">{error}</p> : ""}

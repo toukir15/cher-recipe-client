@@ -2,11 +2,17 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Header from "../Header/Header";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../../firebase/firebase.config";
 
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 export default function LogIn() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const { signIn, setUser } = useContext(AuthContext);
+  const { signIn, setUser, loginUser } = useContext(AuthContext);
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -29,6 +35,19 @@ export default function LogIn() {
         setError(error.message);
       });
   };
+
+  // handle google
+  const handleGoogleSignIn = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        loggedUser(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <div className="text-black bg-black">
@@ -40,7 +59,18 @@ export default function LogIn() {
             <h1 className="text-5xl font-bold">Login now!</h1>
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleSignIn} className="card-body">
+            <div
+              onClick={handleGoogleSignIn}
+              className="mt-6 flex justify-center items-center gap-2 border border-gray-400 py-2 mx-8 cursor-pointer rounded-md"
+            >
+              <FcGoogle className="text-2xl" /> <p>Login with Google</p>
+            </div>
+            <div className="mt-2 flex justify-center items-center gap-2 border border-gray-400 py-2 mx-8 cursor-pointer rounded-md">
+              <FaGithub className="text-2xl" /> <p>Login with Github</p>
+            </div>
+
+            <p className="text-center pt-3">or</p>
+            <form onSubmit={handleSignIn} className="card-body pt-0">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -65,10 +95,15 @@ export default function LogIn() {
                   required
                 />
                 <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    New to this website?{" "}
-                    <Link to="/resister">Please Resister</Link>
-                  </a>
+                  <p className="label-text-alt">
+                    New to this website?
+                    <Link
+                      className="text-blue-500 link link-hover"
+                      to="/resister"
+                    >
+                      Please Resister
+                    </Link>
+                  </p>
                 </label>
               </div>
               <div className="form-control mt-6">
