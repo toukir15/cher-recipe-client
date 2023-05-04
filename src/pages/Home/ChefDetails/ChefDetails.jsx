@@ -6,6 +6,7 @@ export default function ChefDetails({ singleChef }) {
     chef_id,
     chef_name,
     chef_picture,
+    likes,
     experience,
     number_of_recipe,
   } = singleChef;
@@ -16,7 +17,7 @@ export default function ChefDetails({ singleChef }) {
       </figure>
       <div className="card-body">
         <h2 className="card-title">{chef_name}</h2>
-        <p className="m-0 p-0">{chef_details}</p>
+        <p className="m-0 p-0 text-gray-700">{chef_details}</p>
 
         <div className="flex items-center justify-between">
           <div>
@@ -24,13 +25,17 @@ export default function ChefDetails({ singleChef }) {
               <span className="font-bold">Experience:</span> {experience}
             </p>
             <p>
-              <span className="font-bold">Number of Recipe:</span>
+              <span className="font-bold">Number of Recipe: </span>
               {number_of_recipe}
+            </p>
+            <p>
+              <span className="font-bold">Likes: </span>
+              {likes}
             </p>
           </div>
           <div className="card-actions ">
             <Link to={`/recipe/${chef_id}`}>
-              <button className="btn btn-primary"> Recipe</button>
+              <button className="btn btn-warning">Recipe</button>
             </Link>
           </div>
         </div>

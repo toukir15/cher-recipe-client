@@ -1,10 +1,10 @@
 export default function Footer() {
   return (
-    <div className="bg-[#191919] text-white py-12 px-4 md:px-0 mt-20">
+    <div className="bg-[#191919] text-white py-12 px-4 md:px-0">
       <div className="container mx-auto ">
         <div className="grid md:grid-cols-5 py-8">
           <div>
-            <h1 className="text-2xl font-bold">RecruitHub</h1>
+            <h1 className="text-2xl font-bold">Recipe Avenue</h1>
             <p className="mr-4 py-4 text-[#B5B5B5] ">
               There are many variations of passages of Lorem Ipsum , but the
               majority have suffered alteration in some form.
@@ -50,8 +50,8 @@ export default function Footer() {
           <hr className=" border-6" />
         </div>
         <div className="flex justify-between pb-8 text-[#B5B5B5]">
-          <p>@2023 CareerHub. All Rights Reserved</p>
-          <p>Powered by CareerHub</p>
+          <p>@2023 Recipe Avenue. All Rights Reserved</p>
+          <p>Powered by Recipe Avenue</p>
         </div>
       </div>
     </div>

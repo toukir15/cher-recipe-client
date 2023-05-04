@@ -42,7 +42,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/recipe/${params.id}`),
+          fetch(`${import.meta.env.VITE_SERVER_URL}/recipe/${params.id}`),
       },
     ],
   },

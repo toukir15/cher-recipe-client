@@ -2,6 +2,8 @@ import Header from "../../shared/Header/Header";
 import Banner from "../Banner/Banner";
 import Chef from "../Chef/Chef";
 import banner1 from "../../../assets/banner/banner1.jpg";
+import Reviews from "../Reviews/Reviews";
+import Story from "../Story/Story";
 
 export default function Home() {
   return (
@@ -21,6 +23,8 @@ export default function Home() {
         </div>
       </div>
       <Chef />
+      <Story />
+      <Reviews />
     </div>
   );
 }

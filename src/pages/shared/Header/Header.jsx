@@ -8,10 +8,10 @@ export default function Header() {
   return (
     <div className="navbar container mx-auto text-white">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="btn btn-ghost normal-case text-3xl ">Recipe Avenue</a>
       </div>
-      <div className="flex-none">
-        <ul className="flex gap-6 px-1">
+      <div className="flex-none text-gray-300">
+        <ul className="md:flex gap-6 px-1">
           <li>
             <ActiveRoute to="/">
               <a>Home</a>
@@ -33,12 +33,12 @@ export default function Header() {
               </label>
             </div>
             <div className="" onClick={() => userSingOut()}>
-              <button className="btn btn-primary">SignOut</button>
+              <button className="btn btn-warning">SignOut</button>
             </div>
           </div>
         ) : (
           <Link to="/login">
-            <button className="btn btn-primary">Log in</button>
+            <button className="btn btn-warning">Log in</button>
           </Link>
         )}
       </div>

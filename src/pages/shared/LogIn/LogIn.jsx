@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Header from "../Header/Header";
 import { FcGoogle } from "react-icons/fc";
@@ -16,6 +16,10 @@ export default function LogIn() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { signIn, setUser, loginUser, auth } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   // handle sign in with email and password
   const handleSignIn = (event) => {
@@ -34,11 +38,14 @@ export default function LogIn() {
 
         setUser(loggedUser);
         setSuccess("User LoggedIn Successfully");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
       });
   };
+
+  console.log(navigate);
 
   // handle google
   const handleGoogleSignIn = () => {
@@ -47,6 +54,7 @@ export default function LogIn() {
         const loggedUser = result.user;
         console.log(loggedUser);
         loginUser(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -59,6 +67,7 @@ export default function LogIn() {
       .then((result) => {
         const loggedUser = result.user;
         loginUser(loggedUser);
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
@@ -124,7 +133,7 @@ export default function LogIn() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                <button className="btn btn-warning">Login</button>
               </div>
               {success ? <p className="text-green-600">{success}</p> : ""}
               {error ? <p className="text-red-600">{error}</p> : ""}

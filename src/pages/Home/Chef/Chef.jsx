@@ -5,15 +5,17 @@ export default function Chef() {
   const [chef, useChef] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/chef")
+    fetch(`${import.meta.env.VITE_SERVER_URL}/chef`)
       .then((res) => res.json())
       .then((data) => useChef(data));
   }, []);
 
   return (
     <div>
-      <h2 className="text-4xl font-bold text-center my-20">Our Chef</h2>
-      <div className="container mx-auto grid md:grid-cols-3 mt-20">
+      <h2 className="text-4xl font-bold text-center my-20 text-gray-600 ">
+        OUR CHEFS
+      </h2>
+      <div className="container mx-auto grid md:grid-cols-3">
         {chef.map((singleChef) => (
           <ChefDetails
             key={singleChef.chef_id}

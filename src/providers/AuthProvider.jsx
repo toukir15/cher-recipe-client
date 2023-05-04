@@ -15,6 +15,8 @@ export const AuthContext = createContext(null);
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
 
+  console.log("url", `${JSON.stringify(import.meta.env.VITE_SERVER_URL)}/chef`);
+
   //user login or not check
   const [loginUser, setLoginUser] = useState(null);
   useEffect(() => {

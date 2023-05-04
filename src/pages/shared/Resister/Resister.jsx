@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Header from "../Header/Header";
 import { updateProfile } from "firebase/auth";
@@ -8,6 +8,10 @@ export default function Resister() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { resister, loginUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleResister = (event) => {
     // prevent reload
@@ -40,6 +44,7 @@ export default function Resister() {
     resister(email, password)
       .then((result) => {
         updateUserProfile(result, name, photoUrl);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         setError(error.message);
@@ -114,7 +119,7 @@ export default function Resister() {
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Sing Up</button>
+                <button className="btn btn-warning">Sing Up</button>
               </div>
               {success ? <p className="text-green-600">{success}</p> : ""}
               {error ? <p className="text-red-600">{error}</p> : ""}

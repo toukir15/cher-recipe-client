@@ -14,13 +14,13 @@ export default function RecipeDetails({ recipe }) {
         <img src={recipe_picture} alt="Shoes" />
       </figure>
       <div className="card-body">
-        <h2 className="card-title">{name}</h2>
+        <h2 className="text-2xl font-bold">{name}</h2>
         <p>
-          <span>Ingredients: </span>
+          <span className="text-lg font-medium">Ingredients: </span>
           <span>{ingredients}</span>
         </p>
         <p>
-          <span>Cooking Method: </span>
+          <span className="text-lg font-medium">Cooking Method: </span>
           <span>{cooking_method}</span>
         </p>
         <div className="flex justify-between items-center my-2">
