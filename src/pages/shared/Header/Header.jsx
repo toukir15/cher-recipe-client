@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
+import ActiveRoute from "../../ActiveRoute/ActiveRoute";
 
 export default function Header() {
   const { loginUser, userSingOut } = useContext(AuthContext);
@@ -10,14 +11,16 @@ export default function Header() {
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
       </div>
       <div className="flex-none">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="flex gap-6 px-1">
           <li>
-            <Link to="/">
+            <ActiveRoute to="/">
               <a>Home</a>
-            </Link>
+            </ActiveRoute>
           </li>
-          <li>
-            <a>Blog</a>
+          <li className="mr-6">
+            <ActiveRoute to="/blog">
+              <a>Blog</a>
+            </ActiveRoute>
           </li>
         </ul>
         {loginUser ? (
@@ -29,7 +32,7 @@ export default function Header() {
                 </div>
               </label>
             </div>
-            <div onClick={() => userSingOut()}>
+            <div className="" onClick={() => userSingOut()}>
               <button className="btn btn-primary">SignOut</button>
             </div>
           </div>
