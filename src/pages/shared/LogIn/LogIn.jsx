@@ -4,16 +4,20 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import Header from "../Header/Header";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+// import app from "../../../firebase/firebase.config";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import app from "../../../firebase/firebase.config";
+import { GithubAuthProvider } from "firebase/auth";
 
-const auth = getAuth(app);
+// const auth = getAuth(app);
+const githubProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
+
 export default function LogIn() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
-  const { signIn, setUser, loginUser } = useContext(AuthContext);
+  const { signIn, setUser, loginUser, auth } = useContext(AuthContext);
 
+  // handle sign in with email and password
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -42,11 +46,21 @@ export default function LogIn() {
       .then((result) => {
         const loggedUser = result.user;
         console.log(loggedUser);
-        loggedUser(loggedUser);
+        loginUser(loggedUser);
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  // handle github
+  const handleGithubSignIn = () => {
+    signInWithPopup(auth, githubProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        loginUser(loggedUser);
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div>
@@ -65,7 +79,10 @@ export default function LogIn() {
             >
               <FcGoogle className="text-2xl" /> <p>Login with Google</p>
             </div>
-            <div className="mt-2 flex justify-center items-center gap-2 border border-gray-400 py-2 mx-8 cursor-pointer rounded-md">
+            <div
+              onClick={handleGithubSignIn}
+              className="mt-2 flex justify-center items-center gap-2 border border-gray-400 py-2 mx-8 cursor-pointer rounded-md"
+            >
               <FaGithub className="text-2xl" /> <p>Login with Github</p>
             </div>
 
