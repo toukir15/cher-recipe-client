@@ -2,8 +2,10 @@ import Rating from "react-rating";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function RecipeDetails({ recipe }) {
+  const notify = () => toast("Add fovourite successfully!");
   const [favourite, setFavourite] = useState(false);
   const { recipe_picture, name, ingredients, cooking_method, rating } = recipe;
   return (
@@ -40,7 +42,9 @@ export default function RecipeDetails({ recipe }) {
               />
             ) : (
               <MdFavoriteBorder
-                onClick={() => setFavourite(!favourite)}
+                onClick={() => {
+                  setFavourite(!favourite), notify();
+                }}
                 className="text-2xl"
               />
             )}

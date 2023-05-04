@@ -9,8 +9,6 @@ export default function Resister() {
   const [error, setError] = useState("");
   const { resister, loginUser } = useContext(AuthContext);
 
-  console.log(loginUser);
-
   const handleResister = (event) => {
     // prevent reload
     event.preventDefault();
@@ -44,7 +42,6 @@ export default function Resister() {
         updateUserProfile(result, name, photoUrl);
       })
       .catch((error) => {
-        console.log(error.message);
         setError(error.message);
       });
   };

@@ -7,7 +7,7 @@ export default function LogIn() {
   const [success, setSuccess] = useState("");
   const [error, setError] = useState("");
   const { signIn, setUser } = useContext(AuthContext);
-  console.log(signIn);
+
   const handleSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -21,12 +21,11 @@ export default function LogIn() {
     signIn(email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+
         setUser(loggedUser);
         setSuccess("User LoggedIn Successfully");
       })
       .catch((error) => {
-        console.log(error.message);
         setError(error.message);
       });
   };

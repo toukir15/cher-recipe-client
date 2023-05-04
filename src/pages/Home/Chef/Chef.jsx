@@ -9,7 +9,6 @@ export default function Chef() {
       .then((res) => res.json())
       .then((data) => useChef(data));
   }, []);
-  console.log(chef);
 
   return (
     <div>

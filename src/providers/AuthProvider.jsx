@@ -33,11 +33,9 @@ export default function AuthProvider({ children }) {
     signOut(auth)
       .then(() => {
         // Sign-out successful.
-        console.log("sing out");
       })
       .catch((error) => {
         // An error happened.
-        console.log("singOut error", error);
       });
   };
 
