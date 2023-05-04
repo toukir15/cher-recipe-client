@@ -14,7 +14,6 @@ export const AuthContext = createContext(null);
 
 export default function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  console.log(user);
 
   //user login or not check
   const [loginUser, setLoginUser] = useState(null);
@@ -25,9 +24,6 @@ export default function AuthProvider({ children }) {
         setLoginUser(user);
       } else {
         setLoginUser(null);
-        console.log("user not login");
-        // logout function hear
-        //...function
       }
     });
   }, []);

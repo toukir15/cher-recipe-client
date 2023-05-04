@@ -6,6 +6,7 @@ import Resister from "../pages/shared/Resister/Resister";
 import RecipeLayout from "../layout/RecipeLayout";
 import Recipe from "../pages/Recipe/Recipe";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "recipe/:id",
-        element: <RecipeLayout />,
+        element: (
+          <PrivateRoute>
+            <RecipeLayout />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/recipe/${params.id}`),
       },
