@@ -1,28 +1,32 @@
 // import banner1 from "../../../assets/banner/banner1.jpg";
-
-import { Link } from "react-router-dom";
+import pdfFile from "../../../assets/pdf/sample.pdf";
 
 export default function Banner() {
   return (
-    <div className="text-white container mx-auto h-screen flex justify-center flex-col">
-      <h1 className="text-4xl font-bold">Banner detail here</h1>
-      <p className="w-2/4 my-6">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae
-        molestias explicabo unde fuga cumque. Quam alias esse ullam repellendus,
-        ducimus, voluptatum eum nesciunt animi excepturi eius aut error! A
-        quisquam vel provident eaque id, aliquid eveniet laborum adipisci
-        molestias rem natus suscipit voluptatem, libero est culpa rerum ea enim!
-        Maxime, quaerat voluptate. Ex ut, repellat asperiores dicta eveniet
-        maiores reprehenderit perspiciatis, odio rem iste quidem perferendis vel
-        quae! Perferendis, blanditiis obcaecati aliquam excepturi itaque quo id
-        quas, cumque beatae sapiente quaerat voluptates est voluptas voluptatum
-        velit quisquam veniam distinctio possimus nisi tempora natus.
-        Cupiditate, perferendis itaque quia id vel nostrum?
+    <div className="text-white container mx-auto h-screen flex justify-center items-center flex-col">
+      <h1 className="text-4xl text-center font-bold text-gray-300">
+        Welcome to Recipe Avenue br - your one-stop <br /> destination for all
+        your favorite recipes!
+      </h1>
+      <p className="text-center my-6 text-gray-300">
+        Looking for mouthwatering recipes to satisfy your cravings? Look no
+        further than Recipe Avenue! Our website offers a wide variety of recipes
+        for breakfast, lunch, dinner, and even desserts. From traditional dishes
+        to modern favorites, our collection has something for everyone. With
+        easy-to-follow instructions and detailed ingredient lists, you can
+        create delectable dishes that will impress your family and friends. Our
+        website is constantly updated with new recipes, so be sure to check back
+        often for new culinary inspiration. Join our community and share your
+        own recipes and cooking tips with other food lovers. At Recipe Avenue,
+        we believe that cooking is not just a necessity, but an art that brings
+        people together. Let's cook up something delicious together!
       </p>
       <div>
-        <Link to="/recipeLayout">
-          <button className="btn btn-primary">View Recipe</button>
-        </Link>
+        <a href={pdfFile} download={"sample.pdf"}>
+          <button type="download" className="btn btn-warning">
+            Download PDF
+          </button>
+        </a>
       </div>
     </div>
   );
