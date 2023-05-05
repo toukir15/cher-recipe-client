@@ -22,14 +22,14 @@ export default function ChefDetails({ singleChef }) {
         <div className="flex items-center justify-between">
           <div>
             <p>
-              <span className="font-bold">Experience:</span> {experience}
+              <span className="font-medium">Experience:</span> {experience}
             </p>
             <p>
-              <span className="font-bold">Number of Recipe: </span>
+              <span className="font-medium">Number of Recipe: </span>
               {number_of_recipe}
             </p>
             <p>
-              <span className="font-bold">Likes: </span>
+              <span className="font-medium">Likes: </span>
               {likes}
             </p>
           </div>

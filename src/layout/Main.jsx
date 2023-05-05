@@ -1,13 +1,10 @@
-import { Outlet, useNavigate, useNavigation } from "react-router-dom";
-import Header from "../pages/shared/Header/Header";
+import { Outlet, useNavigation } from "react-router-dom";
 import Footer from "../pages/shared/Footer/Footer";
-import Chef from "../pages/Home/Chef/Chef";
 
 export default function Main() {
   const navigation = useNavigation();
   return (
-    <div>
-      {/* <Header /> */}
+    <div className="">
       <div>{navigation.state === "loading" && "loading..."}</div>
       <Outlet />
       <Footer />

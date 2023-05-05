@@ -6,9 +6,11 @@ export default function PrivateRoute({ children }) {
   const { loginUser } = useContext(AuthContext);
 
   const location = useLocation();
-
+  if (loginUser === false) <div>loading...</div>;
   if (loginUser) {
     return children;
   }
-  return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+  if (loginUser === null) {
+    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
+  }
 }

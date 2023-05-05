@@ -7,7 +7,7 @@ export default function Blog() {
         <Header />
       </div>
 
-      <div className="container mx-auto my-32">
+      <div className="container mx-auto my-32 px-4">
         <div className="mb-4">
           <p className="text-xl font-medium">
             1. Tell us the differences between uncontrolled and controlled

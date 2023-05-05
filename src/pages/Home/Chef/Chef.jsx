@@ -12,7 +12,7 @@ export default function Chef() {
 
   return (
     <div>
-      <h2 className="text-4xl font-bold text-center my-20 text-gray-600 ">
+      <h2 className="text-4xl font-medium text-center mt-20 underlineStyle">
         OUR CHEFS
       </h2>
       <div className="container mx-auto grid md:grid-cols-3">

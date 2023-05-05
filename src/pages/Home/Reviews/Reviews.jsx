@@ -20,7 +20,7 @@ export default function Reviews() {
       className="bg-transparent"
     >
       <div className="container mx-auto text-center mb-32">
-        <h1 className="text-4xl font-semibold mb-4">Reviews</h1>
+        <h1 className="text-4xl font-semibold mb-4 underlineStyle">Reviews</h1>
         <h2 className="text-3xl font-semibold mb-4">Premium Experience</h2>
 
         <div className="carousel w-full">

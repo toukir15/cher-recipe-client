@@ -45,20 +45,14 @@ export default function LogIn() {
       });
   };
 
-  console.log(navigate);
-
   // handle google
   const handleGoogleSignIn = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
-        loginUser(loggedUser);
         navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.log(error);
-      });
+      .catch((error) => {});
   };
 
   // handle github

@@ -25,6 +25,11 @@ export default function Resister() {
     setSuccess("");
     setError("");
 
+    if (password.length < 6) {
+      setError("Password less than 6 character");
+      return;
+    }
+
     //update user profile function
     const updateUserProfile = (resisterUser, displayName, photoURL) => {
       updateProfile(resisterUser.user, {
