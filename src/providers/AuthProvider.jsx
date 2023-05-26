@@ -28,7 +28,7 @@ export default function AuthProvider({ children }) {
       }
     });
   }, []);
-
+  //  console.log( );
   //sing out
   const userSingOut = () => {
     signOut(auth)
