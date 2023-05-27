@@ -20,7 +20,7 @@ export default function Recipe() {
           {name} Recipes
         </h2>
         <div className="card lg:card-side bg-base-100">
-          <div className="md:card-body grid md:grid-cols-3">
+          <div className="card-body grid grid-cols-1 md:grid-cols-3">
             {recipeData.recipes.map((recipe, i) => (
               <>
                 <RecipeCard key={i} recipe={recipe}></RecipeCard>

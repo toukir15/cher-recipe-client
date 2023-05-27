@@ -10,8 +10,12 @@ export default function RecipeCard({ recipe }) {
   const { recipe_picture, name, ingredients, cooking_method, rating } = recipe;
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl mb-8 md:mb-0">
-      <figure>
-        <img src={recipe_picture} alt="Shoes" />
+      <figure className="p-4 ">
+        <img
+          className="rounded-lg shadow-lg"
+          src={recipe_picture}
+          alt="Shoes"
+        />
       </figure>
       <div className="card-body">
         <h2 className="text-2xl font-bold">{name}</h2>
